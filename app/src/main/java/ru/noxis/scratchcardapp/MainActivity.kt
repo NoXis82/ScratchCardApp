@@ -19,6 +19,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.draw.drawWithCache
 import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
@@ -53,15 +54,38 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
     Text(
         "Hello Compose!",
         modifier = Modifier
-            .drawBehind {
-                drawRoundRect(
-                    Color(0xFFBBAAEE),
-                    cornerRadius = CornerRadius(10.dp.toPx())
+            .drawWithCache {
+                val brush = Brush.linearGradient(
+                    listOf(
+                        Color(0xFF9E82F0),
+                        Color(0xFF42A5F5)
+                    )
                 )
+                onDrawBehind {
+                    drawRoundRect(
+                        brush,
+                        cornerRadius = CornerRadius(10.dp.toPx())
+                    )
+                }
             }
-            .padding(4.dp)
     )
+
 }
+
+//@Composable
+//fun Greeting(name: String, modifier: Modifier = Modifier) {
+//    Text(
+//        "Hello Compose!",
+//        modifier = Modifier
+//            .drawBehind {
+//                drawRoundRect(
+//                    Color(0xFFBBAAEE),
+//                    cornerRadius = CornerRadius(10.dp.toPx())
+//                )
+//            }
+//            .padding(4.dp)
+//    )
+//}
 
 //@Composable
 //fun Greeting(name: String, modifier: Modifier = Modifier) {
