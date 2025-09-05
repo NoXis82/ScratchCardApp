@@ -39,8 +39,8 @@ class MainActivity : ComponentActivity() {
         setContent {
             ScratchCardAppTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    SliderScaleExample(Modifier.padding(innerPadding))
-
+                    SliderTranslationExample(Modifier.padding(innerPadding))
+//                    SliderScaleExample(Modifier.padding(innerPadding))
 //                    Greeting(
 //                        name = "Android",
 //                        modifier = Modifier.padding(innerPadding)
