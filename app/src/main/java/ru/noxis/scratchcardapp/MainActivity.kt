@@ -39,10 +39,12 @@ class MainActivity : ComponentActivity() {
         setContent {
             ScratchCardAppTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+                    SliderScaleExample(Modifier.padding(innerPadding))
+
+//                    Greeting(
+//                        name = "Android",
+//                        modifier = Modifier.padding(innerPadding)
+//                    )
                 }
             }
         }
@@ -53,7 +55,7 @@ class MainActivity : ComponentActivity() {
 fun Greeting(name: String, modifier: Modifier = Modifier) {
     Text(
         "Hello Compose!",
-        modifier = Modifier
+        modifier = modifier
             .drawWithCache {
                 val brush = Brush.linearGradient(
                     listOf(
