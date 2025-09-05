@@ -15,6 +15,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.TransformOrigin
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -58,6 +59,7 @@ fun SliderRotationExample(modifier: Modifier = Modifier) {
             contentDescription = "Sunset",
             modifier = Modifier
                 .graphicsLayer {
+                    this.transformOrigin = TransformOrigin(0f, 0f)
                     this.rotationX = rotationX
                     this.rotationY = rotationY
                     this.rotationZ = rotationZ
