@@ -18,7 +18,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.draw.drawWithContent
+import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
@@ -46,46 +48,60 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
-
-    var pointerOffset by remember {
-        mutableStateOf(Offset(0f, 0f))
-    }
-
-    Column(
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = modifier
-            .fillMaxSize()
-            .pointerInput("dragging") {
-                detectDragGestures { change, dragAmount ->
-                    pointerOffset += dragAmount
-                }
-            }
-            .onSizeChanged {
-                pointerOffset = Offset(it.width / 2f, it.height / 2f)
-            }
-            .drawWithContent {
-                drawContent()
-                // рисуем полностью чёрную область с маленькой замочной скважиной
-                // в pointerOffset, через которую видна часть пользовательского интерфейса.
-                drawRect(
-                    Brush.radialGradient(
-                        listOf(Color.Transparent, Color.Black),
-                        center = pointerOffset,
-                        radius = 100.dp.toPx(),
-                    )
+    Text(
+        "Hello Compose!",
+        modifier = Modifier
+            .drawBehind {
+                drawRoundRect(
+                    Color(0xFFBBAAEE),
+                    cornerRadius = CornerRadius(10.dp.toPx())
                 )
             }
-    ) {
-        Text(
-            text = "Hello $name!"
-        )
-    }
-
+            .padding(4.dp)
+    )
 }
+
+//@Composable
+//fun Greeting(name: String, modifier: Modifier = Modifier) {
+//
+//    var pointerOffset by remember {
+//        mutableStateOf(Offset(0f, 0f))
+//    }
+//
+//    Column(
+//        verticalArrangement = Arrangement.Center,
+//        horizontalAlignment = Alignment.CenterHorizontally,
+//        modifier = modifier
+//            .fillMaxSize()
+//            .pointerInput("dragging") {
+//                detectDragGestures { change, dragAmount ->
+//                    pointerOffset += dragAmount
+//                }
+//            }
+//            .onSizeChanged {
+//                pointerOffset = Offset(it.width / 2f, it.height / 2f)
+//            }
+//            .drawWithContent {
+//                drawContent()
+//                // рисуем полностью чёрную область с маленькой замочной скважиной
+//                // в pointerOffset, через которую видна часть пользовательского интерфейса.
+//                drawRect(
+//                    Brush.radialGradient(
+//                        listOf(Color.Transparent, Color.Black),
+//                        center = pointerOffset,
+//                        radius = 100.dp.toPx(),
+//                    )
+//                )
+//            }
+//    ) {
+//        Text(
+//            text = "Hello $name!"
+//        )
+//    }
+//
+//}
 
 @Preview(showBackground = true)
 @Composable
