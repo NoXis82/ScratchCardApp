@@ -69,6 +69,17 @@ class ScratchcardState internal constructor(
     var cleared by mutableStateOf(initialCleared)
         private set
 
+
+    /** Reset and display the overlay */
+    fun reset() {
+//        path.reset()
+//        redraw++
+//        cleared = false
+//        cancelCalculate()
+//        cancelForceRecomposition()
+    }
+
+
     /** Clear the overlay */
     fun clear() {
         cleared = true
