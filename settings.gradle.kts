@@ -21,4 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "ScratchCardApp"
 include(":app")
- 
+include(":lib")
